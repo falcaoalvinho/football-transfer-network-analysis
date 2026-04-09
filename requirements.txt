@@ -1,6 +1,3 @@
-# Análise de redes de transferências de futebol
-# Instalar com: pip install -r requirements.txt
- 
 # Construção e análise do grafo
 networkx>=3.0
  
