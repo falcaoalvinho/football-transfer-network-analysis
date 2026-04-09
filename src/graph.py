@@ -1,8 +1,22 @@
 from dotenv import load_dotenv
 import networkx as nx
 import requests
+import os
 
 load_dotenv()
+
+def get_env_variable(variable_name) -> str:
+    """
+    Acessa os valores das variáveis de ambientes e se esse valores forem diferentes de None, os retorna,
+    senão lança uma Exception 
+    """
+    variable_value = os.getenv(variable_name)
+
+    if variable_value == None:
+        raise Exception("O valor recebido pela variável é 'None', verifique se o parametro 'variable_name'" \
+        " está recebendo uma String compatível com as variáveis do ambiente")
+    else:
+        return variable_value        
 
 
 
