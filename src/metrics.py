@@ -1,4 +1,5 @@
 import networkx as nx
+from networkx.algorithms import community
 
 def get_graph_metrics(graph: nx.DiGraph) -> dict:
     """
@@ -44,3 +45,20 @@ def get_ordened_centralities(graph: nx.DiGraph, centrality_method) -> dict:
     centralities = centrality_method(graph)
     ordened_centralities = dict(sorted(centralities.items(), key=lambda item: item[1], reverse=True))
     return ordened_centralities
+
+
+
+def get_communities_metrics(graph: nx.DiGraph, communities) -> dict:
+    """
+    Recebe um grafo direcional e o um conjunto de comunidades e retorna algumas das métricas usadas no projeto
+    sendo elas: "number_of_clusters" (número de clusters), "communities_modularity" (modularidade das comunidades)
+    "assortativity" (assertividade)
+    """
+    metrics = {
+        "number_of_clusters": len(communities),
+        "communities_modularity": nx.community.modularity(graph, communities),
+        "assortativity": nx.degree_assortativity_coefficient(graph)
+    }
+    return metrics
+
+
