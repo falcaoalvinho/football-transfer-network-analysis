@@ -32,7 +32,7 @@ def get_graph_metrics(graph: nx.DiGraph) -> dict:
 
 
 
-def get_ordened_centralities(graph: nx.DiGraph, centrality_method) -> dict:
+def get_sorted_centralities(graph: nx.DiGraph, centrality_method) -> dict:
     """
     Essa função recebe um grafo direcional e uma das funções calculadoras de centralidades e retorna um dicionário
     contendo as centralidades do tipo escolhido, para cada um dos vértices, com valores ordenados do maior para o

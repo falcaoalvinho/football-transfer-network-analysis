@@ -60,7 +60,7 @@ def build_di_graph(page: list, source_column: str, destiny_column: str) -> nx.Di
                 source,
                 destiny,
                 weight=1,
-                edge_transfers=[],
+                edge_transfers=[dict_obj],
                 transfers_quantity=1
                 )
             
