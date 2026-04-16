@@ -9,6 +9,9 @@ def get_comunities(graph, method):
 
     OBS: Alguns métodos são heurísticos, portanto os resultados podem ter variações suaves, normalmente mantendo 
     uma média estável
+
+    OBS: No nosso projeto usamos o método de Louvain ele pode ser acessado pelo pacote "netowrkx.algorithms" no 
+    objeto "community"
     """
     communities = method(graph)
     return communities
