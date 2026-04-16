@@ -33,16 +33,20 @@ def get_api_page(api_url: str, page_name: str):
     """
     response = requests.get(api_url)
 
-    if response.status_code == 200:
-        response_json = response.json()
-        return response_json[page_name]
+    if response.status_code != 200:
+        raise Exception(f"Erro ao acessar a API: status {response.status_code} — {response.text}")
+
+    response_json = response.json()
+    return response_json[page_name]
+    
 
     
 
-def build_di_graph(page: list, source_column: str, destiny_column: str) -> nx.DiGraph:
+def build_di_graph(page: list, source_column: str, destiny_column: str, seed=13) -> tuple[nx.DiGraph, dict]:
     """
     Recebe uma página da planilha na forma de uma lista de dicionários, itera entre cada um deles e atribuí a eles os devidos plots
-    na construção do grafo direcional, considerando inclusive o sentido das relações.
+    na construção do grafo direcional, considerando inclusive o sentido das relações. Retorna uma tupla contendo o grafo direcional, 
+    e o layout para plotagem
 
     page     -> Lista de dicionários contendo os dados para construção do grafo
 
@@ -75,4 +79,5 @@ def build_di_graph(page: list, source_column: str, destiny_column: str) -> nx.Di
             # Peso associado à Aresta
             graph[source][destiny]["weight"] = 1 / transfers_quantity
         
-    return graph
+    layout = nx.spring_layout(graph, k=1, seed=seed)
+    return graph, layout
