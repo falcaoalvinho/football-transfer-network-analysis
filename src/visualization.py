@@ -1,5 +1,7 @@
-import matplotlib.pyplot as plt
+from matplotlib import pyplot
 import networkx as nx
+import pandas as pd
+from pandas.plotting import table
 
 COLORS = [
 "#FF0000",
@@ -23,7 +25,7 @@ COLORS = [
 "#FF0099"
 ]
 
-def draw_di_graph(graph: nx.DiGraph, layout: dict) -> None:
+def draw_di_graph(plot: pyplot, graph: nx.DiGraph, layout: dict ) -> None:
     """
     Recebe o grafo e o layout. Faz o plot padrão do nosso grafo direcional
     """
@@ -36,11 +38,11 @@ def draw_di_graph(graph: nx.DiGraph, layout: dict) -> None:
         arrowsize=10
         )
     
-    plt.show()
+    plot.show()
 
 
 
-def draw_graph_communities(graph: nx.DiGraph, layout: dict, communities: list) -> None:
+def draw_graph_communities(plot: pyplot, graph: nx.DiGraph, layout: dict, communities: list) -> None:
     """
     Recebe o grafo, o layout usado e as comunidades para construir uma visualização do 
     grafo para exibir as comunidades encontradas.
@@ -65,11 +67,11 @@ def draw_graph_communities(graph: nx.DiGraph, layout: dict, communities: list) -
         with_labels=False
     )
 
-    plt.show()
+    plot.show()
 
 
 
-def dict_to_histogram(data_set: dict, bins: int, title: str, xlabel: str, ylabel: str) -> None:
+def dict_to_histogram(plot: pyplot, data_set: dict, bins: int, title: str, xlabel: str, ylabel: str) -> None:
     """
     Usando um conjunto de dados (dict), número de "bins" (caixas), título, e labels (para eixo x e y)
     e faz a plotagem de um histograma com essas informações.
@@ -77,10 +79,29 @@ def dict_to_histogram(data_set: dict, bins: int, title: str, xlabel: str, ylabel
     data_list = [(key, value) for key, value in data_set.items()]
     data_values = list(data_list.values())
 
-    values, columns, bars = plt.hist(data_values, bins=bins, edgecolor="black")
+    values, columns, bars = plot.hist(data_values, bins=bins, edgecolor="black")
     
-    plt.bar_label(bars, fontsize=10, color="black")
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.show()
+    plot.bar_label(bars, fontsize=10, color="black")
+    plot.title(title)
+    plot.xlabel(xlabel)
+    plot.ylabel(ylabel)
+
+    plot.show()
+
+
+
+def draw_table(plot: pyplot, sorted_data: dict, min_value: float, column: str, index_name: str) -> None:
+    """
+    """
+    filtered_data = dict(values for values in sorted_data if sorted_data.column >= min_value)
+
+    data_frame = pd.DataFrame.from_dict(filtered_data, orient='index', columns=[column])
+    data_frame.index.name = index_name
+    data_frame.style.background_gradient(cmap='Blues', subset=[column])
+
+
+    figure, axis = plot.subplots(figsize=(8, 2))
+    axis.axis('off')
+    table(axis, data_frame, loc='center')
+
+    plot.show()
