@@ -1,5 +1,12 @@
 import networkx as nx
 from networkx.algorithms import community
+from collections import Counter
+
+"""
+TODO:
+    -> get_transfers_quantities
+        - Escrever Docstring
+"""
 
 def get_graph_metrics(graph: nx.DiGraph) -> dict:
     """
@@ -32,6 +39,13 @@ def get_graph_metrics(graph: nx.DiGraph) -> dict:
 
 
 
+def get_transfers_quantities(graph: nx.DiGraph):
+    """
+    """
+    return list((data["transfers_quantity"]) for _, _, data in graph.edges(data=True))
+
+
+
 def get_sorted_centralities(graph: nx.DiGraph, centrality_method) -> dict:
     """
     Essa função recebe um grafo direcional e uma das funções calculadoras de centralidades e retorna um dicionário
@@ -60,5 +74,3 @@ def get_communities_metrics(graph: nx.DiGraph, communities) -> dict:
         "assortativity": nx.degree_assortativity_coefficient(graph)
     }
     return metrics
-
-
