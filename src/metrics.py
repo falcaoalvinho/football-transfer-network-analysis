@@ -2,12 +2,6 @@ import networkx as nx
 from networkx.algorithms import community
 from collections import Counter
 
-"""
-TODO:
-    -> get_transfers_quantities
-        - Escrever Docstring
-"""
-
 def get_graph_metrics(graph: nx.DiGraph) -> dict:
     """
     Essa função recebe o grafo direcional e retorna um dicionário com as métricas específicas do grafo e não de 
@@ -41,6 +35,9 @@ def get_graph_metrics(graph: nx.DiGraph) -> dict:
 
 def get_transfers_quantities(graph: nx.DiGraph):
     """
+    Essa função recebe um grafo direcional e retorna para ele uma lista com todas as "transfers_quantity" para as
+    arestas dele. Possivelmente é a função mais nichada do projeto mas pode ser mais generalizada recebendo uma string
+    como parâmetro em vez de um valor hardcoded.
     """
     return list((data["transfers_quantity"]) for _, _, data in graph.edges(data=True))
 

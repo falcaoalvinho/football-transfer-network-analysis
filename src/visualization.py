@@ -5,18 +5,6 @@ from pandas.plotting import table
 from IPython.display import display
 import matplotlib.colors as mcolors
 
-"""
-TODO:
-    -> list_to_histogram
-        - Escrever Docstring
-
-    -> draw_base_table
-        - Escrever Docstring
-
-    -> draw_base_table
-        - Escrever Docstring
-"""
-
 COLORS = [
 "#FF0000",
 "#FF4D00",
@@ -87,20 +75,6 @@ def draw_graph_communities(plot: pyplot, graph: nx.DiGraph, layout: dict, commun
 
 
 
-def list_to_histogram(plot: pyplot, data_values: list, bins: int, title: str, xlabel: str, ylabel: str) -> None:
-    """
-    """
-    values, columns, bars = plot.hist(data_values, bins=bins, edgecolor="black")
-    
-    plot.bar_label(bars, fontsize=10, color="black")
-    plot.title(title)
-    plot.xlabel(xlabel)
-    plot.ylabel(ylabel)
-
-    plot.show()
-
-
-
 def dict_to_histogram(plot: pyplot, data_set: dict, bins: int, title: str, xlabel: str, ylabel: str) -> None:
     """
     Usando um conjunto de dados (dict), número de "bins" (caixas), título, e labels (para eixo x e y)
@@ -122,8 +96,30 @@ def dict_to_histogram(plot: pyplot, data_set: dict, bins: int, title: str, xlabe
 
 
 
+def list_to_histogram(plot: pyplot, data_values: list, bins: int, title: str, xlabel: str, ylabel: str) -> None:
+    """
+    Muito semelhante a dict_to_histogram, a única grande diferencça é que constroí o histograma a partir de uma lista
+    de valores e não de um dicionário
+    """
+    values, columns, bars = plot.hist(data_values, bins=bins, edgecolor="black")
+    
+    plot.bar_label(bars, fontsize=10, color="black")
+    plot.title(title)
+    plot.xlabel(xlabel)
+    plot.ylabel(ylabel)
+
+    plot.show()
+
+
+
 def draw_base_table(plot: pyplot, sorted_data: dict, column: str, index_name: str, min_value: float = 0) -> None:
     """
+    Função que constroí as tabelas basícas (usadas no paper final) usando a estilização padrão do projeto. Ela recebe
+    um plot (tela onde vamos plotar os dados), os dados na forma de dicionários, o nome da coluna, o nome do index, e 
+    um valor mínimo que por padrão é = 0
+
+    OBS: A função gera uma tabela básica com 2 colunas para dados, uma para índices - no caso o nome dos times - e 
+    o dado associado - sejam valores do pagerank, outras centralidades etc.
     """
     filtered_data = dict((key, value) for key, value in sorted_data.items() if sorted_data[key] >= min_value)
 
@@ -140,6 +136,11 @@ def draw_base_table(plot: pyplot, sorted_data: dict, column: str, index_name: st
 
 def draw_styled_table(sorted_data: dict, column: str, index_name: str, min_value: float = 0) -> None:
     """
+    Constroí uma tabela no mesmo formato de "draw_base_table" porém não depende de uma tela/objeto plotavél, e também
+    contém elementos de estilização tornando esse retorno melhor para leitura/consulta dos dados.
+
+    OBS: Diferente da primeira função que gerava tabelas "base" em PNG, essa as constrí em HTML e CSS bruto, tenha isso em
+    mente, se precisar converte-las consulte o arquivo "export.py" neste mesmo diretório
     """
     HEADER_COLOR = "#2D6A4F"
     HEADER_TEXT  = "#FFFFFF"
