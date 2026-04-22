@@ -10,7 +10,7 @@ def get_env_variable(variable_name) -> str:
     Acessa os valores das variáveis de ambientes e se esse valores forem diferentes de None, os retorna,
     senão lança uma Exception 
     """
-    variable_value = os.getenv(variable_name)
+    variable_value = os.getenv(variable_name, "../")
 
     if variable_value == None:
         raise Exception("O valor recebido pela variável é 'None', verifique se o parametro 'variable_name'" \
@@ -79,5 +79,5 @@ def build_di_graph(page: list, source_column: str, destiny_column: str, seed=13)
             # Peso associado à Aresta
             graph[source][destiny]["weight"] = 1 / transfers_quantity
         
-    layout = nx.spring_layout(graph, k=1, seed=seed)
+    layout = nx.spring_layout(graph, k=0.1, seed=seed)
     return graph, layout
