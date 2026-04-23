@@ -1,7 +1,9 @@
 # Football Transfer Network Analysis
  
 Análise do mercado de transferências de futebol profissional modelado como grafo direcionado. O projeto mapeia 534 transferências entre 312 clubes (jan–ago 2025), aplica métricas de centralidade e detecção de comunidades para identificar perfis funcionais: **formadores**, **importadores** e **intermediários**.
- 
+
+![Imagem do Grafo](outputs/graphs/Base.png)
+
 Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFABC) e refatorado para portfólio técnico público. O paper original está disponível [aqui](./paper.pdf).
  
 ---
