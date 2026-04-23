@@ -2,7 +2,7 @@
  
 Análise do mercado de transferências de futebol profissional modelado como grafo direcionado. O projeto mapeia 534 transferências entre 312 clubes (jan–ago 2025), aplica métricas de centralidade e detecção de comunidades para identificar perfis funcionais: **formadores**, **importadores** e **intermediários**.
  
-Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFABC) e refatorado para portfólio técnico público. O paper original está disponível [https://drive.google.com/file/d/18fdNXhS9VTGN-DOL-AYEiexLnHu4ug-j/view?usp=sharing](./paper.pdf).
+Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFABC) e refatorado para portfólio técnico público. O paper original está disponível [aqui](./paper.pdf).
  
 ---
  
@@ -28,12 +28,29 @@ Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFA
  
 ## Setup
  
-**Pré-requisitos:** Python 3.11
+**Pré-requisitos:** Python 3.11 e [pyenv](https://github.com/pyenv/pyenv)
  
 ```bash
 git clone https://github.com/falcaoalvinho/football-transfer-network-analysis.git
 cd football-transfer-network-analysis
-pip install -e .
+```
+ 
+O pyenv seleciona o Python 3.11.0 automaticamente ao entrar no diretório (via `.python-version`). Em seguida, crie e ative o ambiente virtual:
+ 
+```bash
+# Linux/macOS
+python -m venv .venv
+source .venv/bin/activate
+ 
+# Windows
+python -m venv .venv
+.venv\Scripts\activate
+```
+ 
+Instale as dependências e configure as variáveis de ambiente:
+ 
+```bash
+pip install -r requirements.txt
 cp .env.example .env
 ```
  
@@ -43,7 +60,7 @@ Edite o `.env` com a URL da sua API:
 API_URL=sua_url_aqui
 ```
  
-Em seguida, inicie o Jupyter e execute os notebooks em ordem:
+Inicie o Jupyter e execute os notebooks em ordem:
  
 ```bash
 jupyter notebook
