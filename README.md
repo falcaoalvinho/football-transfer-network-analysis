@@ -4,7 +4,7 @@ Análise do mercado de transferências de futebol profissional modelado como gra
 
 ![Imagem do Grafo](outputs/graphs/Base.png)
 
-Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFABC) e refatorado para portfólio técnico público. O paper original está disponível [aqui](./paper.pdf).
+Desenvolvido como projeto acadêmico na disciplina de Comunicação e Redes (UFABC) e refatorado para portfólio técnico público. O paper original está disponível [aqui](https://drive.google.com/file/d/18fdNXhS9VTGN-DOL-AYEiexLnHu4ug-j/view).
  
 ---
  
